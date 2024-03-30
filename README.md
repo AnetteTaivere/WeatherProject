@@ -50,7 +50,8 @@ To set up the application:
 1. Clone the repository.
 2. Setup H2 database locally
     - Download H2 Database
-    - Start H2 Database Server
+    - Start H2 Database Server (http://localhost:8082 should open)
+    - Saved Settings: Generic H2
     - JDBC URL: jdbc:h2:tcp://localhost/~/test
     - Username: sa
     - Password: sa
