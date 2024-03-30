@@ -82,28 +82,34 @@ public class PullAndWriteData implements Job {
                     String windSpeed = null;
                     String weatherPhenomenon = null;
                     for (int i = 0; i < stationList.getLength(); i++) {
+
                         Element stationElement = (Element) stationList.item(i);
                         name = stationElement.getElementsByTagName("name").item(0).getTextContent();
-                        String[] xmlSplit = stationElement.getTextContent().split("\t\t");
-                        wmocode = xmlSplit[2];
-                        weatherPhenomenon = xmlSplit[5];
-                        if (!xmlSplit[10].trim().isEmpty()) {
-                            airTemperature = Double.valueOf(xmlSplit[10]);
-                        } else {
-                            airTemperature = 100.0;
-                        }
-                        windSpeed = xmlSplit[12];
+                        if (name.equals("Tallinn-Harku") || name.equals("Tartu-Tõravere") || name.equals("Pärnu")) {
 
-                        // write to Database
-                        PreparedStatement preparedStatement = dbConn.prepareStatement(sql);
-                        preparedStatement.setString(1, name);
-                        preparedStatement.setString(2, wmocode);
-                        preparedStatement.setDouble(3, airTemperature);
-                        preparedStatement.setString(4, windSpeed);
-                        preparedStatement.setString(5, weatherPhenomenon);
-                        preparedStatement.setString(6, date);
-                        //execute statement
-                        preparedStatement.executeUpdate();
+
+                            String[] xmlSplit = stationElement.getTextContent().split("\t\t");
+                            wmocode = xmlSplit[2];
+                            weatherPhenomenon = xmlSplit[5];
+                            if (!xmlSplit[10].trim().isEmpty()) {
+                                airTemperature = Double.valueOf(xmlSplit[10]);
+                            } else {
+                                airTemperature = 100.0;
+                            }
+                            windSpeed = xmlSplit[12];
+
+
+                            // write to Database
+                            PreparedStatement preparedStatement = dbConn.prepareStatement(sql);
+                            preparedStatement.setString(1, name);
+                            preparedStatement.setString(2, wmocode);
+                            preparedStatement.setDouble(3, airTemperature);
+                            preparedStatement.setString(4, windSpeed);
+                            preparedStatement.setString(5, weatherPhenomenon);
+                            preparedStatement.setString(6, date);
+                            //execute statement
+                            preparedStatement.executeUpdate();
+                        }
                     }
 
                     System.out.println("Data inserted successfully!");
