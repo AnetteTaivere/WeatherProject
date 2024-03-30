@@ -1,4 +1,4 @@
-package com.example.demo2;
+package com.example.weatherProject;
 
 import org.quartz.SchedulerException;
 import org.springframework.boot.SpringApplication;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @SpringBootApplication
 @RestController
 @RequestMapping("")
-public class FoodDeliveryPrice {
+public class Main {
 
 
     @PostMapping("/fee")
@@ -37,7 +37,7 @@ public class FoodDeliveryPrice {
     }
 
     public static void main(String[] args) throws SchedulerException {
-        ApplicationContext context = SpringApplication.run(FoodDeliveryPrice.class, args);
+        ApplicationContext context = SpringApplication.run(Main.class, args);
         CronJob cron = context.getBean(CronJob.class);
         cron.executeTask();
     }

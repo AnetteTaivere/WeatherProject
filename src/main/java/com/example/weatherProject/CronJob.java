@@ -1,4 +1,4 @@
-package com.example.demo2;
+package com.example.weatherProject;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;

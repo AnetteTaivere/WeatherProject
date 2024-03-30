@@ -1,6 +1,5 @@
-package com.example.demo2;
+package com.example.weatherProject;
 
-import java.io.PrintStream;
 import java.sql.*;
 
 public class DeliveryFeeCalculator {

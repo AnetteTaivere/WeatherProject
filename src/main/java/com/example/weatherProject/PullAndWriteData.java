@@ -1,4 +1,4 @@
-package com.example.demo2;
+package com.example.weatherProject;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;

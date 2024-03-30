@@ -1,4 +1,4 @@
-package com.example.demo2;
+package com.example.weatherProject;
 
 public class CalculationException extends RuntimeException {
 
@@ -6,11 +6,6 @@ public class CalculationException extends RuntimeException {
 
     public CalculationException(String message) {
         super(message);
-        this.userMessage = message;
-    }
-
-    public CalculationException(String message, Throwable cause) {
-        super(message, cause);
         this.userMessage = message;
     }
 
