@@ -66,7 +66,7 @@ To set up the application:
    WEATHER_PHENOMENON VARCHAR(255),
    DATE VARCHAR(255)
    );`
-3. Build and run the Main class.
+4. Build and run the Main class.
 
 ## Usage
 
@@ -82,10 +82,10 @@ For Linux:
 For Windows:
 `Invoke-RestMethod -Method Post -Uri "http://localhost:8080/fee" -Body @{city="Tallinn"; vehicle="car"}`
 
-
 ## Unit Test coverage (names: dataPullingTest, weatherProjectTests)
 
 Metrics:
+
 - Class Coverage: 100%
-- Method Coverage: 75%
+- Method Coverage: 77%
 - Line Coverage: 80%

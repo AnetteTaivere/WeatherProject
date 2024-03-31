@@ -32,7 +32,7 @@ public class Main {
             if (total == -20) return "Usage of selected vehicle type is forbidden due to high wind speed.";
             if (total == -30) return "Usage of selected vehicle type is forbidden.";
             else
-                return "";
+                return "Something went wrong! ";
         }
     }
 

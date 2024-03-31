@@ -86,7 +86,7 @@ public class DeliveryFeeCalculator {
                 return -100;
             }
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                // If no weather data found, return 0
+                // If no database is empty
                 if (!resultSet.next()) {
                     return -10;
                     //throw new CalculationException("No weather data found for city: " + city);
