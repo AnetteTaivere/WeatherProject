@@ -1,4 +1,4 @@
-package com.example.weatherProject;
+/**package com.example.weatherProject;
 
 public class CalculationException extends RuntimeException {
 
@@ -13,3 +13,4 @@ public class CalculationException extends RuntimeException {
         return userMessage;
     }
 }
+**/

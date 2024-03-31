@@ -4,17 +4,26 @@ import java.sql.*;
 
 public class DeliveryFeeCalculator {
 
-    public static double calculateDeliveryFee(String city, String vehicle) {
+    /**
+     * Calculates the delivery fee based on the specified city and vehicle type.
+     *
+     * @param city    The city where the delivery is being made (Tallinn, Tartu, or Pärnu).
+     * @param vehicle The type of vehicle being used for delivery (Bike, Car, or Scooter).
+     * @return The total delivery fee, including base fee and weather-related fee, or an error code if inputs are invalid.
+     *         Error codes:
+     *         -1.0: Invalid city (not Tallinn, Tartu, or Pärnu).
+     *         -2.0: Invalid vehicle type (not Bike, Car, or Scooter).
+     *         -10 or less: Error occurred while calculating weather conditions.
+     */
+    public static double calculateFee(String city, String vehicle) {
         // Convert city and vehicle to lowercase
         city = city.toLowerCase();
         vehicle = vehicle.toLowerCase();
         // Validate city and vehicle inputs
-        if (!(city.equals("tallinn") || city.equals("tartu") || city.equals("pärnu"))) {
-            return -1.0;
-        }
-        if (!(vehicle.equals("bike") || vehicle.equals("car") || vehicle.equals("scooter"))) {
-            return -2.0;
-        }
+        if (!(city.equals("tallinn") || city.equals("tartu") || city.equals("pärnu"))) return -1.0;
+
+        if (!(vehicle.equals("bike") || vehicle.equals("car") || vehicle.equals("scooter"))) return -2.0;
+
         // Calculate base and weather fees
         double base = calculateReginalBaseFee(city, vehicle);
         double weatherFee = calculateWeather(city, vehicle);
@@ -53,9 +62,15 @@ public class DeliveryFeeCalculator {
     }
 
     private static double calculateWeather(String city, String vehicle) {
+        String url = "jdbc:h2:tcp://localhost/~/test";
+        String user = "sa";
+        String password = "sa";
+
+        // SQL statement for the insert
+        String sql = "INSERT INTO WEATHER_DATA (ID, NAME, AIR_TEMPERATURE, WIND_SPEED, WEATHER_PHENOMENON, DATE) VALUES (DEFAULT, ?, ?, ?, ?, ?)";
 
         double extraFees = 0.0;
-        try (Connection connection = DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa")) {
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
             PreparedStatement preparedStatement = null;
             // Prepare SQL statement based on city
             switch (city) {
@@ -96,7 +111,6 @@ public class DeliveryFeeCalculator {
                     } else if (windSpeed > 20) {
                         return -20;
                         //throw new CalculationException("Usage of selected vehicle type is forbidden due to high wind speed");
-
                     }
                 }
 

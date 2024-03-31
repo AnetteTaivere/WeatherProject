@@ -51,10 +51,21 @@ To set up the application:
 2. Setup H2 database locally
     - Download H2 Database
     - Start H2 Database Server (http://localhost:8082 should open)
-    - Saved Settings: Generic H2
-    - JDBC URL: jdbc:h2:tcp://localhost/~/test
-    - Username: sa
-    - Password: sa
+    - Configure like this:
+        - Saved Settings: Generic H2
+        - JDBC URL: jdbc:h2:tcp://localhost/~/test
+        - Username: sa
+        - Password: sa
+3. Run this code in database console to create table
+   `CREATE TABLE WEATHER_DATA (
+   ID INT PRIMARY KEY,
+   NAME VARCHAR(255),
+   WMO_CODE VARCHAR(255),
+   AIR_TEMPERATURE DOUBLE,
+   WIND_SPEED VARCHAR(255),
+   WEATHER_PHENOMENON VARCHAR(255),
+   DATE VARCHAR(255)
+   );`
 3. Build and run the Main class.
 
 ## Usage
@@ -70,3 +81,11 @@ For Linux:
 `curl -X POST -F 'city=Tartu' -F 'vehicle=bike' http://localhost:8080/fee`
 For Windows:
 `Invoke-RestMethod -Method Post -Uri "http://localhost:8080/fee" -Body @{city="Tallinn"; vehicle="car"}`
+
+
+## Unit Test coverage (names: dataPullingTest, weatherProjectTests)
+
+Metrics:
+- Class Coverage: 100%
+- Method Coverage: 75%
+- Line Coverage: 80%
